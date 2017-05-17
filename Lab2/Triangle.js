@@ -40,11 +40,22 @@ Triangle.prototype.calculateArea = function () {
 };
 
 Triangle.prototype.draw = function () {
-
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        var points = this.getPoints();
+        ctx.strokeStyle = "#00ff00";
+        ctx.fillStyle = this.getFillColor();
+        ctx.moveTo(points[0].x, points[0].y);
+        ctx.lineTo(points[1].x, points[1].y);
+        ctx.lineTo(points[2].x, points[2].y);
+        ctx.fill();
+        ctx.stroke();
+    }
 };
 
 function PrintTriangle() {
-    var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(0, 10), new Coordinate(10, 0));
+    var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(100, 0), new Coordinate(0, 100));
+    triangle.draw();
     // console.log(triangle.getPoints()[1].y);
     console.log(triangle.calculateLengthOfSides(triangle.getPoints()));
     console.log(triangle.calculateArea());

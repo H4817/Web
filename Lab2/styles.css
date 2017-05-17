@@ -1,0 +1,121 @@
+$widthLeftContainer: 700px;
+$heightContainer: 700px;
+$widthContainer: 400px;
+$heightCanvas: 500px;
+$widthCanvas: 500px;
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.has_border
+{
+    outline: 2px solid black;
+}
+
+.has_margin {
+    margin: 10px;
+}
+
+.scalable {
+    box-sizing: border-box;
+}
+
+.title {
+    font-size: 20px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.canvas_container {
+    float: left;
+
+.canvas {
+    width: $widthCanvas;
+    height: $heightCanvas;
+}
+
+}
+
+.option_container {
+    float: left;
+    width: $widthContainer;
+    height: $heightContainer;
+
+.shape_select_container {
+    height: 100px;
+    padding: 15px;
+
+select {
+    min-width: 100px;
+}
+}
+
+
+.setting {
+    position: relative;
+    height: auto;
+    min-height: 150px;
+    padding: 10px;
+
+.common_options {
+    margin: 0 auto 15px;
+
+.option_labels
+{
+    text-align: center;
+}
+
+.color_shape,
+.color_border {
+    display: inline-block;
+    margin: 0px 5px 5px 0px;
+}
+}
+
+.setting_shape {
+
+input {
+    width: 100px;
+    margin: 15px 15px;
+}
+}
+
+.draw_shape {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0 15px 15px;
+}
+}
+
+.shape_characteristics {
+    padding: 10px;
+    font-size: 20px;
+
+.output_perimeter,
+.output_area {
+    margin: 20px 15px;
+}
+
+.output_perimeter::before {
+    content: 'Perimeter: ';
+}
+
+.output_area::before {
+    content: 'Area: ';
+}
+}
+
+.add_shape {
+    padding: 10px;
+}
+
+
+.add_shape button {
+    margin-left: 10px;
+}
+
+}
+

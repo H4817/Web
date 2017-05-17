@@ -41,10 +41,23 @@ Circle.prototype.calculatePerimeter = function () {
 };
 
 Circle.prototype.draw = function () {
-
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        var circle = new Path2D();
+        ctx.strokeStyle = this.getBorderColor();
+        ctx.fillStyle = this.getFillColor();
+        // circle.moveTo(125, 35);
+        circle.arc(this.getX(), this.getY(), this.getRadius(), 0, 2 * Math.PI); // x y radius division
+        ctx.stroke(circle);
+        ctx.fill(circle);
+    }
 };
 
+
 function PrintCircle() {
+    var circle = new Circle(105, 0, 0);
+    circle.draw();
 
     /*  var circle = new Circle(15, 29, 23);
      console.log("circle: ");
