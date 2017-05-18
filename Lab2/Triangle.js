@@ -1,6 +1,8 @@
-function Triangle(p1, p2, p3) {
+function Triangle(p1, p2, p3, fillColor, borderColor) {
     this.setPoints(p1, p2, p3);
     this.calculateLengthOfSides(this.getPoints());
+    this.setFillColor(fillColor);
+    this.setBorderColor(borderColor);
 }
 
 Triangle.__proto__ = Shape;
@@ -43,7 +45,7 @@ Triangle.prototype.draw = function () {
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
         var points = this.getPoints();
-        ctx.strokeStyle = "#00ff00";
+        ctx.strokeStyle = this.getBorderColor();
         ctx.fillStyle = this.getFillColor();
         ctx.moveTo(points[0].x, points[0].y);
         ctx.lineTo(points[1].x, points[1].y);
@@ -53,11 +55,17 @@ Triangle.prototype.draw = function () {
     }
 };
 
-function PrintTriangle() {
-    var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(100, 0), new Coordinate(0, 100));
-    triangle.draw();
-    // console.log(triangle.getPoints()[1].y);
-    console.log(triangle.calculateLengthOfSides(triangle.getPoints()));
-    console.log(triangle.calculateArea());
-    console.log(triangle.calculatePerimeter());
+function CreateTriangle(p1, p2, p3, fillColor, borderColor) {
+    return new Triangle(p1, p2, p3, fillColor, borderColor);
 }
+/*
+ function PrintTriangle(fillColor, borderColor) {
+ var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(100, 0), new Coordinate(0, 100));
+ triangle.setFillColor(fillColor);
+ triangle.setBorderColor(borderColor);
+ triangle.draw();
+ // console.log(triangle.getPoints()[1].y);
+ console.log(triangle.calculateLengthOfSides(triangle.getPoints()));
+ console.log(triangle.calculateArea());
+ console.log(triangle.calculatePerimeter());
+ }*/

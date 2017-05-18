@@ -1,6 +1,8 @@
-function Rectangle(p1, p3) {
+function Rectangle(p1, p3, fillColor, borderColor) {
     this.setPoints(p1, p3);
     this.calculateSides();
+    this.setFillColor(fillColor);
+    this.setBorderColor(borderColor);
 }
 
 Rectangle.__proto__ = Shape;
@@ -48,11 +50,16 @@ Rectangle.prototype.draw = function () {
     ctx.fill(rectangle);
 };
 
-function PrintRectangle() {
-    var rectangle = new Rectangle(new Coordinate(0, 0), new Coordinate(100, 100));
-    rectangle.draw();
-    console.log(rectangle.calculatePerimeter());
-    console.log(rectangle.calculateArea());
+function CreateRectangle(p1, p3, fillColor, borderColor) {
+    return new Rectangle(p1, p3, fillColor, borderColor);
 }
 
 
+/*function PrintRectangle(fillColor, borderColor) {
+ var rectangle = new Rectangle(new Coordinate(0, 0), new Coordinate(100, 100));
+ rectangle.setFillColor(fillColor);
+ rectangle.setBorderColor(borderColor);
+ rectangle.draw();
+ console.log(rectangle.calculatePerimeter());
+ console.log(rectangle.calculateArea());
+ }*/

@@ -8,6 +8,7 @@
 <script type="text/javascript" src="Circle.js"></script>
 <script type="text/javascript" src="Triangle.js"></script>
 <script type="text/javascript" src="Rectangle.js"></script>
+<script type="text/javascript" src="ShapesCollection.js"></script>
 <script type="text/javascript" src="main.js"></script>
 </head>
 
@@ -18,7 +19,7 @@
 
         <div class="shape_select_container has_border scalable has_margin">
             <div class="title" id="select_shape_title">Select shape</div>
-            <select class="select_shape" id="type_shape">
+            <select class="select_shape" id="type_shape" onchange="SelectShape(type_shape.value)">
                 <option value="">None</option>
             </select>
         </div>
@@ -53,7 +54,7 @@
                 <option value="Triangle">Triangle</option>
                 <option value="Circle">Circle</option>
             </select>
-            <button id="add_shape" onclick="AddShape(shape_type.value)">Add shape</button>
+            <button id="add_shape" onclick="AddShape(shape_type.value, color_shape.value, color_border.value); FillShapesSelector(shape_type.value)">Add shape</button>
         </div>
     </div>
 
