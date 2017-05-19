@@ -62,14 +62,3 @@ Triangle.prototype.getClassName = function () {
 function CreateTriangle(p1, p2, p3, fillColor, borderColor) {
     return new Triangle(p1, p2, p3, fillColor, borderColor);
 }
-/*
- function PrintTriangle(fillColor, borderColor) {
- var triangle = new Triangle(new Coordinate(0, 0), new Coordinate(100, 0), new Coordinate(0, 100));
- triangle.setFillColor(fillColor);
- triangle.setBorderColor(borderColor);
- triangle.draw();
- // console.log(triangle.getPoints()[1].y);
- console.log(triangle.calculateLengthOfSides(triangle.getPoints()));
- console.log(triangle.calculateArea());
- console.log(triangle.calculatePerimeter());
- }*/

@@ -63,38 +63,15 @@ Circle.prototype.getClassName = function () {
     return "Circle";
 };
 
+Circle.prototype.clear = function () {
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+        ctx.clearRect(this.getX() - this.getRadius(), this.getY() - this.getRadius(), this.getRadius() * 2, this.getRadius() * 2);
+    }
+};
+
 
 function CreateCircle(radius, X, Y, fillColor, borderColor) {
     return new Circle(radius, X, Y, fillColor, borderColor)
 }
-
-
-/*function PrintCircle(fillColor, borderColor) {
- var circle = new Circle(105, 0, 0);
- circle.setFillColor(fillColor);
- circle.setBorderColor(borderColor);
- circle.draw();
-
- /!*  var circle = new Circle(15, 29, 23);
- console.log("circle: ");
- console.log(circle.getRadius());
- circle.setFillColor(123);
- console.log(circle.getFillColor());
- circle.setBorderColor(321);
- console.log(circle.getBorderColor());
- console.log(circle.calculateArea());
- console.log(circle.calculatePerimeter());*!/
-
- // var arr = [];
- // arr.push(new Coordinate(10, 0));
- // arr.push(new Coordinate(0, 11));
- //
- // for (var i = 0; i < arr.length; i++) {
- //     var x = arr[i].x;
- //     var y = arr[i].y;
- //     console.log(x);
- //     console.log(y);
- // }
-
-
- }*/

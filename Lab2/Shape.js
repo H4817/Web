@@ -7,7 +7,10 @@ function Shape(fillColor, borderColor) {
 }
 
 Shape.prototype.setFillColor = function (fillColor) {
-    this.fillColor = fillColor;
+    if (!fillColor)
+        this.fillColor = "#000000";
+    else
+        this.fillColor = fillColor;
 };
 
 Shape.prototype.getFillColor = function () {
@@ -15,7 +18,10 @@ Shape.prototype.getFillColor = function () {
 };
 
 Shape.prototype.setBorderColor = function (borderColor) {
-    this.borderColor = borderColor;
+    if (!borderColor)
+        this.borderColor = "#000000";
+    else
+        this.borderColor = borderColor;
 };
 
 Shape.prototype.getBorderColor = function () {
@@ -26,4 +32,3 @@ function Coordinate(x, y) {
     this.x = x;
     this.y = y;
 }
-

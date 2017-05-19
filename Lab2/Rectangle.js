@@ -57,13 +57,3 @@ Rectangle.prototype.getClassName = function () {
 function CreateRectangle(p1, p3, fillColor, borderColor) {
     return new Rectangle(p1, p3, fillColor, borderColor);
 }
-
-
-/*function PrintRectangle(fillColor, borderColor) {
- var rectangle = new Rectangle(new Coordinate(0, 0), new Coordinate(100, 100));
- rectangle.setFillColor(fillColor);
- rectangle.setBorderColor(borderColor);
- rectangle.draw();
- console.log(rectangle.calculatePerimeter());
- console.log(rectangle.calculateArea());
- }*/
