@@ -55,6 +55,10 @@ Triangle.prototype.draw = function () {
     }
 };
 
+Triangle.prototype.getClassName = function () {
+    return "Triangle";
+};
+
 function CreateTriangle(p1, p2, p3, fillColor, borderColor) {
     return new Triangle(p1, p2, p3, fillColor, borderColor);
 }

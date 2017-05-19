@@ -15,6 +15,9 @@ ShapesCollection.prototype.GetLastOne = function () {
 };
 
 ShapesCollection.prototype.GetSpecificShapes = function (shapeType) {
+    return this.shapesCollection.filter(function (obj) {
+        return obj.getClassName() === shapeType;
+    })
     // var tempArr = this.GetShapesCollection().filter(function (obj) {
     //     return shapeType === obj;
     // });

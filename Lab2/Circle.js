@@ -59,6 +59,10 @@ Circle.prototype.draw = function () {
     }
 };
 
+Circle.prototype.getClassName = function () {
+    return "Circle";
+};
+
 
 function CreateCircle(radius, X, Y, fillColor, borderColor) {
     return new Circle(radius, X, Y, fillColor, borderColor)

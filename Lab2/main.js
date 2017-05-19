@@ -40,13 +40,8 @@ function RedrawShape(specificShape, newParameters) {
 
 
 function SelectShape(shapeType) {
-    // console.log(shapeType);
-    var result = shapesCollection.GetSpecificShapes(shapeType);
-    console.log(result);
-    // console.log("shape type is: " + shapeType);
-    // var concreteShape = shapesCollection.GetLastOne();
-    // console.log(concreteShape);
-    // console.log("concrete shape is : " + concreteShape.constructor.name)
+    var specificShapes = shapesCollection.GetSpecificShapes(shapeType);
+    console.log(specificShapes);
 }
 
 

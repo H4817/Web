@@ -50,6 +50,10 @@ Rectangle.prototype.draw = function () {
     ctx.fill(rectangle);
 };
 
+Rectangle.prototype.getClassName = function () {
+    return "Rectangle";
+};
+
 function CreateRectangle(p1, p3, fillColor, borderColor) {
     return new Rectangle(p1, p3, fillColor, borderColor);
 }
