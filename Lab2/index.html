@@ -21,7 +21,7 @@
     <div class="shape_select_container has_border scalable has_margin">
         <div class="title" id="select_shape_title">Select shape</div>
         <select class="select_shape" id="type_shape"
-                onchange="FillShapesCharacteristicsBlock(SelectShape(type_shape.value)); FillSettingsBlock(type_shape.value)">
+                onchange="FillShapesCharacteristicsBlock(SelectShape(type_shape.value)); FillSettingsBlock(type_shape.value); SynchronizeSecondSelect(type_shape.value)">
             <option value="">None</option>
         </select>
     </div>
@@ -42,40 +42,40 @@
 
             <div class="select_coordinates" id="coordinates">
 
-                <div class="rectangle_coordinates" id="Rectangle_coordinates">
+                <form class="rectangle_coordinates" id="Rectangle_coordinates">
                     <div>Input P1 (x coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="rectangle_p1x">
                     <div>Input P1 (y coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="rectangle_p1y">
                     <div>Input P3 (x coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="rectangle_p3x">
                     <div>Input P3 (y coordinate):</div>
-                    <input type="number">
-                </div>
+                    <input type="number" id="rectangle_p3y">
+                </form>
 
-                <div class="triangle_coordinates hidden" id="Triangle_coordinates">
+                <form class="triangle_coordinates hidden" id="Triangle_coordinates">
                     <div>Input P1 (x coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="triangle_p1x">
                     <div>Input P1 (y coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="triangle_p1y">
                     <div>Input P2 (x coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="triangle_p2x">
                     <div>Input P2 (y coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="triangle_p2y">
                     <div>Input P3 (x coordinate):</div>
-                    <input type="number">
+                    <input type="number" id="triangle_p3x">
                     <div>Input P3 (y coordinate):</div>
-                    <input type="number">
-                </div>
+                    <input type="number" id="triangle_p3y">
+                </form>
 
-                <div class="circle_coordinates hidden" id="Circle_coordinates">
-                    <div>Input radius: </div>
-                    <input type="number">
-                    <div>Input X: </div>
-                    <input type="number">
-                    <div>Input Y: </div>
-                    <input type="number">
-                </div>
+                <form class="circle_coordinates hidden" id="Circle_coordinates">
+                    <div>Input radius:</div>
+                    <input type="number" id="radius">
+                    <div>Input X:</div>
+                    <input type="number" id="circle_center_x">
+                    <div>Input Y:</div>
+                    <input type="number" id="circle_center_y">
+                </form>
 
             </div>
         </div>

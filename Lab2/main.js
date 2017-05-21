@@ -4,6 +4,7 @@ var oldShapeType = null;
 var counter = 0;
 var specificShapes = null;
 
+
 function FillShapesSelector(shape) {
     var shapes_selector = document.getElementById("type_shape");
     var option = document.createElement("option");
@@ -11,17 +12,41 @@ function FillShapesSelector(shape) {
     shapes_selector.add(option);
 }
 
+/**
+ * @return {boolean}
+ */
+function IsItShape(shapeType) {
+    return shapeType === "Rectangle" || shapeType === "Triangle" || shapeType === "Circle";
+}
+
+function SynchronizeSecondSelect(shapeType) {
+    if (IsItShape(shapeType)) {
+        document.getElementById("shape_type").value = shapeType;
+    }
+}
+
 function FillSettingsBlock(shapeType) {
-    var shape_coordinates_block = document.getElementById(shapeType + "_coordinates");
-    shape_coordinates_block.classList.toggle("hidden");
-    oldSelectedShape ? document.getElementById(oldSelectedShape + "_coordinates").classList.toggle("hidden") : document.getElementById("Rectangle_coordinates").classList.toggle("hidden");
-    oldSelectedShape = shapeType;
+    if (IsItShape(shapeType)) {
+        var shape_coordinates_block = document.getElementById(shapeType + "_coordinates");
+        shape_coordinates_block.classList.toggle("hidden");
+        oldSelectedShape ? document.getElementById(oldSelectedShape + "_coordinates").classList.toggle("hidden") : document.getElementById("Rectangle_coordinates").classList.toggle("hidden"); /////
+        oldSelectedShape = shapeType;
+    }
 }
 
 function FillShapesCharacteristicsBlock(selectedShape) {
     if (selectedShape instanceof Shape) {
         document.getElementById("perimeter").innerText = selectedShape.calculatePerimeter();
         document.getElementById("area").innerText = selectedShape.calculateArea();
+        document.getElementById("color_shape").value = selectedShape.getFillColor();
+        document.getElementById("color_border").value = selectedShape.getBorderColor();
+    }
+    else {
+        document.getElementById("color_shape").value = "#000000";
+        document.getElementById("color_border").value = "#000000";
+        if (oldSelectedShape)
+            document.getElementById(oldSelectedShape + "_coordinates").reset();
+        // document.getElementById(oldSelectedShape + "_coordinates").classList.toggle("hidden");
     }
 }
 
@@ -33,13 +58,24 @@ function ProcessInput() {
 function AddShape(shapeType, fillColor, borderColor) {
     switch (shapeType) {
         case "Rectangle":
-            shapesCollection.AddToShapesCollection(CreateRectangle(new Coordinate(300, 300), new Coordinate(100, 100), fillColor, borderColor));
+            shapesCollection.AddToShapesCollection(
+                CreateRectangle(
+                    new Coordinate(document.getElementById("rectangle_p1x").value, document.getElementById("rectangle_p1y").value),
+                    new Coordinate(document.getElementById("rectangle_p3x").value, document.getElementById("rectangle_p3y").value),
+                    fillColor, borderColor));
             break;
         case "Triangle":
-            shapesCollection.AddToShapesCollection(CreateTriangle(new Coordinate(0, 0), new Coordinate(100, 0), new Coordinate(0, 100), fillColor, borderColor));
+            shapesCollection.AddToShapesCollection(CreateTriangle(
+                new Coordinate(document.getElementById("triangle_p1x").value, document.getElementById("triangle_p1y").value),
+                new Coordinate(document.getElementById("triangle_p2x").value, document.getElementById("triangle_p2y").value),
+                new Coordinate(document.getElementById("triangle_p3x").value, document.getElementById("triangle_p3y").value),
+                fillColor, borderColor));
             break;
         case "Circle":
-            shapesCollection.AddToShapesCollection(CreateCircle(100, new Coordinate(randomInteger(0, 400), randomInteger(0, 400)), fillColor, borderColor));
+            shapesCollection.AddToShapesCollection(CreateCircle(
+                document.getElementById("radius").value,
+                new Coordinate(document.getElementById("circle_center_x").value, document.getElementById("circle_center_y").value),
+                fillColor, borderColor));
             break;
         default:
             console.log("Add shape error: unknown shape type");
@@ -73,19 +109,11 @@ function randomInteger(min, max) {
 }
 
 function HighlightSelectedShape(shape) {
-    // var tmpShape = JSON.parse(JSON.stringify(specificShapes[counter]));
-    // tmpShape.setFillColor("#00ff00");
-    // tmpShape.draw();
-
-    var copiedObject = jQuery.extend({}, shape);
-    copiedObject.setFillColor("#00ff00");
-    copiedObject.draw();
-
-
-    // var old_color = shape.getFillColor();
-    // console.log(shape);
-    // shape.setFillColor("#00ff00");
-    // shape.draw();
+    if (shape instanceof Shape) {
+        var copiedObject = jQuery.extend({}, shape);
+        copiedObject.setFillColor("#00ff00");
+        copiedObject.draw();
+    }
 }
 
 function DrawShapes(shapes) {

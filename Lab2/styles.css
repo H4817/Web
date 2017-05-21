@@ -119,6 +119,6 @@ input {
 
 }
 
-div.hidden {
+form.hidden {
     display: none;
 }

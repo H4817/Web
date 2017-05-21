@@ -42,17 +42,20 @@ Triangle.prototype.calculateArea = function () {
 };
 
 Triangle.prototype.draw = function () {
+    var canvas = document.getElementById('canvas');
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
-        var points = this.getPoints();
         ctx.strokeStyle = this.getBorderColor();
         ctx.fillStyle = this.getFillColor();
+        var points = this.getPoints();
+        ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
         ctx.lineTo(points[1].x, points[1].y);
         ctx.lineTo(points[2].x, points[2].y);
-        ctx.fill();
-        ctx.stroke();
+        ctx.closePath();
     }
+    ctx.fill();
+    ctx.stroke();
 };
 
 Triangle.prototype.getClassName = function () {
