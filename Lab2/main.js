@@ -1,5 +1,5 @@
 var shapesCollection = new ShapesCollection();
-var oldShape = null;
+var oldSelectedShape = null;
 var oldShapeType = null;
 var counter = 0;
 var specificShapes = null;
@@ -11,6 +11,19 @@ function FillShapesSelector(shape) {
     shapes_selector.add(option);
 }
 
+function FillSettingsBlock(shapeType) {
+    var shape_coordinates_block = document.getElementById(shapeType + "_coordinates");
+    shape_coordinates_block.classList.toggle("hidden");
+    oldSelectedShape ? document.getElementById(oldSelectedShape + "_coordinates").classList.toggle("hidden") : document.getElementById("Rectangle_coordinates").classList.toggle("hidden");
+    oldSelectedShape = shapeType;
+}
+
+function FillShapesCharacteristicsBlock(selectedShape) {
+    if (selectedShape instanceof Shape) {
+        document.getElementById("perimeter").innerText = selectedShape.calculatePerimeter();
+        document.getElementById("area").innerText = selectedShape.calculateArea();
+    }
+}
 
 function ProcessInput() {
     var list = document.getElementById("shape_type");
@@ -103,6 +116,8 @@ function SelectShape(shapeType) {
     oldShapeType = shapeType;
 
     // specificShapes[counter].draw();
+
+    return specificShapes[counter];
 
 }
 

@@ -20,37 +20,78 @@
 
     <div class="shape_select_container has_border scalable has_margin">
         <div class="title" id="select_shape_title">Select shape</div>
-        <select class="select_shape" id="type_shape" onchange="SelectShape(type_shape.value)">
+        <select class="select_shape" id="type_shape"
+                onchange="FillShapesCharacteristicsBlock(SelectShape(type_shape.value)); FillSettingsBlock(type_shape.value)">
             <option value="">None</option>
         </select>
     </div>
 
     <div class="setting scalable has_border has_margin">
-        <div class="title" id="setting_title">Setting</div>
+        <div class="title" id="setting_title">Settings</div>
         <div class="common_options">
             <div class="color_shape">
                 <div class="option_labels l_color_shape">Shape color</div>
-                <input id="color_shape">
+                <input type="color" value="#000000" id="color_shape">
             </div>
 
             <div class="color_border">
                 <div class="option_labels l_color_border">Border shape color</div>
-                <input id="color_border">
+                <input type="color" value="#000000" id="color_border">
+            </div>
+            <br>
+
+            <div class="select_coordinates" id="coordinates">
+
+                <div class="rectangle_coordinates" id="Rectangle_coordinates">
+                    <div>Input P1 (x coordinate):</div>
+                    <input type="number">
+                    <div>Input P1 (y coordinate):</div>
+                    <input type="number">
+                    <div>Input P3 (x coordinate):</div>
+                    <input type="number">
+                    <div>Input P3 (y coordinate):</div>
+                    <input type="number">
+                </div>
+
+                <div class="triangle_coordinates hidden" id="Triangle_coordinates">
+                    <div>Input P1 (x coordinate):</div>
+                    <input type="number">
+                    <div>Input P1 (y coordinate):</div>
+                    <input type="number">
+                    <div>Input P2 (x coordinate):</div>
+                    <input type="number">
+                    <div>Input P2 (y coordinate):</div>
+                    <input type="number">
+                    <div>Input P3 (x coordinate):</div>
+                    <input type="number">
+                    <div>Input P3 (y coordinate):</div>
+                    <input type="number">
+                </div>
+
+                <div class="circle_coordinates hidden" id="Circle_coordinates">
+                    <div>Input radius: </div>
+                    <input type="number">
+                    <div>Input X: </div>
+                    <input type="number">
+                    <div>Input Y: </div>
+                    <input type="number">
+                </div>
+
             </div>
         </div>
         <div id="setting" class="setting_shape"></div>
-        <button class="draw_shape" id="draw_shape">Draw shape</button>
     </div>
 
     <div class="shape_characteristics has_border has_margin scalable" id="shape_data">
         <div class="title" id="shape_characteristics_title">Shape characteristics</div>
-        <div class="output_perimeter" id="perimeter"></div>
-        <div class="output_area" id="area"></div>
+        <br>
+        <div class="output_perimeter">Perimeter: <span id="perimeter"></span></div>
+        <div class="output_area">Area: <span id="area"> </span></div>
     </div>
 
     <div class="add_shape has_border has_margin">
         <div class="title" id="add_shape_title">Add shape</div>
-        <select id="shape_type">
+        <select id="shape_type" onchange="FillSettingsBlock(shape_type.value)">
             <option value="Rectangle">Rectangle</option>
             <option value="Triangle">Triangle</option>
             <option value="Circle">Circle</option>
