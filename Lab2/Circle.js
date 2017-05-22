@@ -63,15 +63,6 @@ Circle.prototype.getClassName = function () {
     return "Circle";
 };
 
-Circle.prototype.clear = function () {
-    var canvas = document.getElementById('canvas');
-    if (canvas.getContext) {
-        var ctx = canvas.getContext('2d');
-        ctx.clearRect(this.getX() - this.getRadius(), this.getY() - this.getRadius(), this.getRadius() * 2, this.getRadius() * 2);
-    }
-};
-
-
 function CreateCircle(radius, X, Y, fillColor, borderColor) {
     return new Circle(radius, X, Y, fillColor, borderColor)
 }

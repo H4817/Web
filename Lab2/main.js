@@ -66,7 +66,6 @@ function FillShapesCharacteristicsBlock(selectedShape) {
             default:
                 console.log("Add shape error: unknown shape type");
                 break;
-
         }
 
     }
@@ -75,7 +74,6 @@ function FillShapesCharacteristicsBlock(selectedShape) {
         document.getElementById("color_border").value = "#000000";
         if (oldSelectedShape)
             document.getElementById(oldSelectedShape + "_coordinates").reset();
-        // document.getElementById(oldSelectedShape + "_coordinates").classList.toggle("hidden");
     }
 }
 
@@ -113,28 +111,41 @@ function AddShape(shapeType, fillColor, borderColor) {
     shapesCollection.GetLastOne().draw();
 }
 
-function RedrawShape(specificShape, newParameters) {
-    switch (specificShape.getClassName()) {
-        case "Rectangle":
-            break;
-        case "Triangle":
-            break;
-        case "Circle":
-            specificShape.clear();
-            specificShape.setCenter(newParameters);
-            specificShape.draw();
-            break;
-        default:
-            console.log("RedrawShape: error, unknown shape type");
-            break;
-    }
-    specificShape.draw();
+function RedrawCircle(radius, x, y, shapeColor, borderColor) {
+    var arrParams = [];
+    arrParams["radius"] = radius;
+    arrParams["center"] = new Coordinate(x, y);
+    arrParams["fillColor"] = shapeColor;
+    arrParams["borderColor"] = borderColor;
+    RedrawShape(GetSelectedShape(), arrParams);
 }
 
-function randomInteger(min, max) {
-    var rand = min - 0.5 + Math.random() * (max - min + 1);
-    rand = Math.round(rand);
-    return rand;
+function RedrawShape(specificShape, newParameters) {
+    console.log(specificShape);
+    console.log(newParameters);
+    if (specificShape instanceof Shape) {
+        switch (specificShape.getClassName()) {
+            case "Rectangle":
+                break;
+            case "Triangle":
+                break;
+            case "Circle":
+                specificShape.setCenter(newParameters["center"]);
+                specificShape.setRadius(newParameters["radius"]);
+                specificShape.setFillColor(newParameters["fillColor"]);
+                specificShape.setBorderColor(newParameters["borderColor"]);
+                break;
+            default:
+                console.log("RedrawShape: error, unknown shape type");
+                break;
+        }
+        var canvas = document.getElementById('canvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            DrawShapes(shapesCollection.GetShapesCollection());
+        }
+    }
 }
 
 function HighlightSelectedShape(shape) {
@@ -151,11 +162,16 @@ function DrawShapes(shapes) {
     }
 }
 
+function GetSelectedShape() {
+    if (specificShapes)
+        return specificShapes[counter];
+    else
+        return null;
+}
 
 function SelectShape(shapeType) {
 
     if (shapeType && oldShapeType === shapeType) {
-        // RedrawShape(specificShapes[counter], new Coordinate(150, 150));
         ++counter;
     }
     else {
@@ -163,16 +179,13 @@ function SelectShape(shapeType) {
         counter = 0;
     }
 
-    DrawShapes(shapesCollection.GetShapesCollection());
-
     if (counter >= specificShapes.length)
         counter = 0;
 
     HighlightSelectedShape(specificShapes[counter]);
 
+    DrawShapes(shapesCollection.GetShapesCollection());
     oldShapeType = shapeType;
-
-    // specificShapes[counter].draw();
 
     return specificShapes[counter];
 
