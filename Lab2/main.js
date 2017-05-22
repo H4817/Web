@@ -40,6 +40,35 @@ function FillShapesCharacteristicsBlock(selectedShape) {
         document.getElementById("area").innerText = selectedShape.calculateArea();
         document.getElementById("color_shape").value = selectedShape.getFillColor();
         document.getElementById("color_border").value = selectedShape.getBorderColor();
+
+        switch (selectedShape.getClassName()) {
+            case "Rectangle":
+                var rPoints = selectedShape.getPoints();
+                document.getElementById("rectangle_p1x").value = rPoints[0].x;
+                document.getElementById("rectangle_p1y").value = rPoints[0].y;
+                document.getElementById("rectangle_p3x").value = rPoints[1].x;
+                document.getElementById("rectangle_p3y").value = rPoints[1].y;
+                break;
+            case "Triangle":
+                var tPoints = selectedShape.getPoints();
+                document.getElementById("triangle_p1x").value = tPoints[0].x;
+                document.getElementById("triangle_p1y").value = tPoints[0].y;
+                document.getElementById("triangle_p2x").value = tPoints[1].x;
+                document.getElementById("triangle_p2y").value = tPoints[1].y;
+                document.getElementById("triangle_p3x").value = tPoints[2].x;
+                document.getElementById("triangle_p3y").value = tPoints[2].y;
+                break;
+            case "Circle":
+                document.getElementById("circle_center_x").value = selectedShape.getX();
+                document.getElementById("circle_center_y").value = selectedShape.getY();
+                document.getElementById("radius").value = selectedShape.getRadius();
+                break;
+            default:
+                console.log("Add shape error: unknown shape type");
+                break;
+
+        }
+
     }
     else {
         document.getElementById("color_shape").value = "#000000";
