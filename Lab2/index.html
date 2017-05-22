@@ -52,7 +52,7 @@
                     <div>Input P3 (y coordinate):</div>
                     <input type="number" id="rectangle_p3y">
                     <br>
-                    <button id="redraw_rectangle">Redraw rectangle</button>
+                    <button id="redraw_rectangle" type="button" onclick="RedrawRectangle(rectangle_p1x.value,rectangle_p1y.value, rectangle_p3x.value, rectangle_p3y.value, color_shape.value, color_border.value)">Redraw rectangle</button>
                 </form>
 
                 <form class="triangle_coordinates hidden" id="Triangle_coordinates">
@@ -69,7 +69,7 @@
                     <div>Input P3 (y coordinate):</div>
                     <input type="number" id="triangle_p3y">
                     <br>
-                    <button id="redraw_triangle">Redraw triangle</button>
+                    <button id="redraw_triangle" type="button" onclick="RedrawTriangle(triangle_p1x.value,triangle_p1y.value,triangle_p2x.value,triangle_p2y.value,triangle_p3x.value,triangle_p3y.value, color_shape.value, color_border.value)">Redraw triangle</button>
                 </form>
 
                 <form class="circle_coordinates hidden" id="Circle_coordinates">
@@ -80,7 +80,10 @@
                     <div>Input Y:</div>
                     <input type="number" id="circle_center_y">
                     <br>
-                    <button id="redraw_circle" type="button" onclick="RedrawCircle(radius.value, circle_center_x.value, circle_center_y.value, color_shape.value, color_border.value)">Redraw circle</button>
+                    <button id="redraw_circle" type="button"
+                            onclick="RedrawCircle(radius.value, circle_center_x.value, circle_center_y.value, color_shape.value, color_border.value)">
+                        Redraw circle
+                    </button>
                 </form>
 
             </div>

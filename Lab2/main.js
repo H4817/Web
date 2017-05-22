@@ -111,6 +111,26 @@ function AddShape(shapeType, fillColor, borderColor) {
     shapesCollection.GetLastOne().draw();
 }
 
+function RedrawRectangle(p1x, p1y, p3x, p3y, shapeColor, borderColor) {
+    var arrParams = [];
+    arrParams["p1"] = new Coordinate(p1x, p1y);
+    arrParams["p3"] = new Coordinate(p3x, p3y);
+    arrParams["fillColor"] = shapeColor;
+    arrParams["borderColor"] = borderColor;
+    RedrawShape(GetSelectedShape(), arrParams);
+}
+
+function RedrawTriangle(p1x, p1y, p2x, p2y, p3x, p3y, shapeColor, borderColor) {
+    var arrParams = [];
+    arrParams["p1"] = new Coordinate(p1x, p1y);
+    arrParams["p2"] = new Coordinate(p2x, p2y);
+    arrParams["p3"] = new Coordinate(p3x, p3y);
+    arrParams["fillColor"] = shapeColor;
+    arrParams["borderColor"] = borderColor;
+    RedrawShape(GetSelectedShape(), arrParams);
+}
+
+
 function RedrawCircle(radius, x, y, shapeColor, borderColor) {
     var arrParams = [];
     arrParams["radius"] = radius;
@@ -126,25 +146,30 @@ function RedrawShape(specificShape, newParameters) {
     if (specificShape instanceof Shape) {
         switch (specificShape.getClassName()) {
             case "Rectangle":
+                specificShape.setPoints(newParameters["p1"], newParameters["p3"]);
                 break;
             case "Triangle":
+                specificShape.setPoints(newParameters["p1"], newParameters["p2"], newParameters["p3"]);
                 break;
             case "Circle":
                 specificShape.setCenter(newParameters["center"]);
                 specificShape.setRadius(newParameters["radius"]);
-                specificShape.setFillColor(newParameters["fillColor"]);
-                specificShape.setBorderColor(newParameters["borderColor"]);
                 break;
             default:
                 console.log("RedrawShape: error, unknown shape type");
                 break;
         }
+        specificShape.setFillColor(newParameters["fillColor"]);
+        specificShape.setBorderColor(newParameters["borderColor"]);
         var canvas = document.getElementById('canvas');
         if (canvas.getContext) {
             var ctx = canvas.getContext('2d');
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             DrawShapes(shapesCollection.GetShapesCollection());
         }
+    }
+    else {
+        alert("select shape first");
     }
 }
 
@@ -182,9 +207,10 @@ function SelectShape(shapeType) {
     if (counter >= specificShapes.length)
         counter = 0;
 
+    DrawShapes(shapesCollection.GetShapesCollection());
+
     HighlightSelectedShape(specificShapes[counter]);
 
-    DrawShapes(shapesCollection.GetShapesCollection());
     oldShapeType = shapeType;
 
     return specificShapes[counter];

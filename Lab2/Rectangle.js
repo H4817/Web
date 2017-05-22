@@ -44,6 +44,7 @@ Rectangle.prototype.draw = function () {
         var rectangle = new Path2D();
         ctx.strokeStyle = this.getBorderColor();
         ctx.fillStyle = this.getFillColor();
+        this.calculateSides();
         rectangle.rect(this.getPoints()[0].x, this.getPoints()[0].y, this.getSides()[0], this.getSides()[1]);// x y width height
     }
     ctx.stroke(rectangle);
